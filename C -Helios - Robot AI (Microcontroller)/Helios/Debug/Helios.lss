@@ -1,0 +1,628 @@
+
+Helios.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000002a6  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000002  00800060  000002a6  0000031a  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .comment      00000030  00000000  00000000  0000031c  2**0
+                  CONTENTS, READONLY
+  3 .debug_aranges 00000078  00000000  00000000  0000034c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_info   00000957  00000000  00000000  000003c4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_abbrev 00000202  00000000  00000000  00000d1b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_line   00000a87  00000000  00000000  00000f1d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_frame  000000c4  00000000  00000000  000019a4  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_str    0000ca82  00000000  00000000  00001a68  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_loc    00000611  00000000  00000000  0000e4ea  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_ranges 00000058  00000000  00000000  0000eafb  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_macro  00002c26  00000000  00000000  0000eb53  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	12 c0       	rjmp	.+36     	; 0x26 <__ctors_end>
+   2:	2c c0       	rjmp	.+88     	; 0x5c <__bad_interrupt>
+   4:	2b c0       	rjmp	.+86     	; 0x5c <__bad_interrupt>
+   6:	2a c0       	rjmp	.+84     	; 0x5c <__bad_interrupt>
+   8:	29 c0       	rjmp	.+82     	; 0x5c <__bad_interrupt>
+   a:	28 c0       	rjmp	.+80     	; 0x5c <__bad_interrupt>
+   c:	27 c0       	rjmp	.+78     	; 0x5c <__bad_interrupt>
+   e:	26 c0       	rjmp	.+76     	; 0x5c <__bad_interrupt>
+  10:	25 c0       	rjmp	.+74     	; 0x5c <__bad_interrupt>
+  12:	24 c0       	rjmp	.+72     	; 0x5c <__bad_interrupt>
+  14:	23 c0       	rjmp	.+70     	; 0x5c <__bad_interrupt>
+  16:	22 c0       	rjmp	.+68     	; 0x5c <__bad_interrupt>
+  18:	21 c0       	rjmp	.+66     	; 0x5c <__bad_interrupt>
+  1a:	20 c0       	rjmp	.+64     	; 0x5c <__bad_interrupt>
+  1c:	1f c0       	rjmp	.+62     	; 0x5c <__bad_interrupt>
+  1e:	1e c0       	rjmp	.+60     	; 0x5c <__bad_interrupt>
+  20:	1d c0       	rjmp	.+58     	; 0x5c <__bad_interrupt>
+  22:	1c c0       	rjmp	.+56     	; 0x5c <__bad_interrupt>
+  24:	1b c0       	rjmp	.+54     	; 0x5c <__bad_interrupt>
+
+00000026 <__ctors_end>:
+  26:	11 24       	eor	r1, r1
+  28:	1f be       	out	0x3f, r1	; 63
+  2a:	cf e5       	ldi	r28, 0x5F	; 95
+  2c:	d4 e0       	ldi	r29, 0x04	; 4
+  2e:	de bf       	out	0x3e, r29	; 62
+  30:	cd bf       	out	0x3d, r28	; 61
+
+00000032 <__do_copy_data>:
+  32:	10 e0       	ldi	r17, 0x00	; 0
+  34:	a0 e6       	ldi	r26, 0x60	; 96
+  36:	b0 e0       	ldi	r27, 0x00	; 0
+  38:	e6 ea       	ldi	r30, 0xA6	; 166
+  3a:	f2 e0       	ldi	r31, 0x02	; 2
+  3c:	02 c0       	rjmp	.+4      	; 0x42 <__SREG__+0x3>
+  3e:	05 90       	lpm	r0, Z+
+  40:	0d 92       	st	X+, r0
+  42:	a2 36       	cpi	r26, 0x62	; 98
+  44:	b1 07       	cpc	r27, r17
+  46:	d9 f7       	brne	.-10     	; 0x3e <__SP_H__>
+
+00000048 <__do_clear_bss>:
+  48:	20 e0       	ldi	r18, 0x00	; 0
+  4a:	a2 e6       	ldi	r26, 0x62	; 98
+  4c:	b0 e0       	ldi	r27, 0x00	; 0
+  4e:	01 c0       	rjmp	.+2      	; 0x52 <.do_clear_bss_start>
+
+00000050 <.do_clear_bss_loop>:
+  50:	1d 92       	st	X+, r1
+
+00000052 <.do_clear_bss_start>:
+  52:	a2 36       	cpi	r26, 0x62	; 98
+  54:	b2 07       	cpc	r27, r18
+  56:	e1 f7       	brne	.-8      	; 0x50 <.do_clear_bss_loop>
+  58:	c7 d0       	rcall	.+398    	; 0x1e8 <main>
+  5a:	23 c1       	rjmp	.+582    	; 0x2a2 <_exit>
+
+0000005c <__bad_interrupt>:
+  5c:	d1 cf       	rjmp	.-94     	; 0x0 <__vectors>
+
+0000005e <board_init>:
+#include <asf.h>
+#include <board.h>
+#include <conf_board.h>
+
+void board_init(void)
+{
+  5e:	08 95       	ret
+
+00000060 <initialisePins>:
+	}
+}
+
+void initialisePins()
+{
+	DDRD = 0b00000111; // sets PD0 and PD1 to output
+  60:	87 e0       	ldi	r24, 0x07	; 7
+  62:	81 bb       	out	0x11, r24	; 17
+	PORTD = 0b00000100;
+  64:	84 e0       	ldi	r24, 0x04	; 4
+  66:	82 bb       	out	0x12, r24	; 18
+	
+	DDRC = 0b00000000; // sets PC4 to input
+  68:	14 ba       	out	0x14, r1	; 20
+	PORTC = 0b00110000; // enable pullup of PC4
+  6a:	80 e3       	ldi	r24, 0x30	; 48
+  6c:	85 bb       	out	0x15, r24	; 21
+  6e:	08 95       	ret
+
+00000070 <ADCConvert>:
+}
+
+int ADCConvert(int port)
+{				
+	ADMUX = port; // selects the pin to collect analogue data from and convert into digital data
+  70:	87 b9       	out	0x07, r24	; 7
+		
+	ADMUX |= (1 << REFS0); //Sets reference to AVcc with external capacitor on AREF pin
+  72:	3e 9a       	sbi	0x07, 6	; 7
+		
+	//ADMUX |= (1 << ADLAR); // set ADLAR to high to enable 8-bit resolution, the res at which the digital signal will be converted into
+	ADMUX &= ~(1 << ADLAR); //16 bit resolution
+  74:	3d 98       	cbi	0x07, 5	; 7
+		
+	ADCSRA |= (1 << ADPS2); //16 prescale for 1Mhz
+  76:	32 9a       	sbi	0x06, 2	; 6
+		
+	ADCSRA |= (1 << ADEN); // enable the ADC
+  78:	37 9a       	sbi	0x06, 7	; 6
+	
+	ADCSRA |= (1 << ADSC); //begin conversion
+  7a:	36 9a       	sbi	0x06, 6	; 6
+	while(ADCSRA & (1 << ADSC)); // waits for conversion to finish
+  7c:	36 99       	sbic	0x06, 6	; 6
+  7e:	fe cf       	rjmp	.-4      	; 0x7c <ADCConvert+0xc>
+	//int rightLDR = ADCH; // stores digital data
+	
+	return (ADCL + (ADCH << 8)); //return 10 bit resolution
+  80:	24 b1       	in	r18, 0x04	; 4
+  82:	85 b1       	in	r24, 0x05	; 5
+  84:	90 e0       	ldi	r25, 0x00	; 0
+  86:	98 2f       	mov	r25, r24
+  88:	88 27       	eor	r24, r24
+}
+  8a:	82 0f       	add	r24, r18
+  8c:	91 1d       	adc	r25, r1
+  8e:	08 95       	ret
+
+00000090 <moveForward>:
+	}
+}
+
+void moveForward(int cycles)
+{
+	while(cycles > 0)
+  90:	18 16       	cp	r1, r24
+  92:	19 06       	cpc	r1, r25
+  94:	fc f4       	brge	.+62     	; 0xd4 <moveForward+0x44>
+	{
+		//left servo
+		PORTD |= (1 << PD0);
+  96:	90 9a       	sbi	0x12, 0	; 18
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  98:	e0 ee       	ldi	r30, 0xE0	; 224
+  9a:	f0 e0       	ldi	r31, 0x00	; 0
+  9c:	31 97       	sbiw	r30, 0x01	; 1
+  9e:	f1 f7       	brne	.-4      	; 0x9c <moveForward+0xc>
+  a0:	00 c0       	rjmp	.+0      	; 0xa2 <moveForward+0x12>
+  a2:	00 00       	nop
+		_delay_ms(0.9);
+		PORTD &= ~(1 << PD0);
+  a4:	90 98       	cbi	0x12, 0	; 18
+  a6:	e5 ea       	ldi	r30, 0xA5	; 165
+  a8:	fe e0       	ldi	r31, 0x0E	; 14
+  aa:	31 97       	sbiw	r30, 0x01	; 1
+  ac:	f1 f7       	brne	.-4      	; 0xaa <moveForward+0x1a>
+  ae:	00 c0       	rjmp	.+0      	; 0xb0 <moveForward+0x20>
+  b0:	00 00       	nop
+		_delay_ms(15);
+		
+		
+		//right servo
+		PORTD |= (1 << PD1);
+  b2:	91 9a       	sbi	0x12, 1	; 18
+  b4:	ec e0       	ldi	r30, 0x0C	; 12
+  b6:	f2 e0       	ldi	r31, 0x02	; 2
+  b8:	31 97       	sbiw	r30, 0x01	; 1
+  ba:	f1 f7       	brne	.-4      	; 0xb8 <moveForward+0x28>
+  bc:	00 c0       	rjmp	.+0      	; 0xbe <moveForward+0x2e>
+  be:	00 00       	nop
+		_delay_ms(2.1);
+		PORTD &= ~(1 << PD1);
+  c0:	91 98       	cbi	0x12, 1	; 18
+  c2:	e5 ea       	ldi	r30, 0xA5	; 165
+  c4:	fe e0       	ldi	r31, 0x0E	; 14
+  c6:	31 97       	sbiw	r30, 0x01	; 1
+  c8:	f1 f7       	brne	.-4      	; 0xc6 <moveForward+0x36>
+  ca:	00 c0       	rjmp	.+0      	; 0xcc <moveForward+0x3c>
+  cc:	00 00       	nop
+		_delay_ms(15);
+		cycles-=1;
+  ce:	01 97       	sbiw	r24, 0x01	; 1
+	}
+}
+
+void moveForward(int cycles)
+{
+	while(cycles > 0)
+  d0:	00 97       	sbiw	r24, 0x00	; 0
+  d2:	09 f7       	brne	.-62     	; 0x96 <moveForward+0x6>
+  d4:	08 95       	ret
+
+000000d6 <reverse>:
+	}
+}
+
+void reverse(int cycles)
+{
+	while(cycles > 0)
+  d6:	18 16       	cp	r1, r24
+  d8:	19 06       	cpc	r1, r25
+  da:	fc f4       	brge	.+62     	; 0x11a <reverse+0x44>
+	{
+		//left servo
+		PORTD |= (1 << PD0);
+  dc:	90 9a       	sbi	0x12, 0	; 18
+  de:	ec e0       	ldi	r30, 0x0C	; 12
+  e0:	f2 e0       	ldi	r31, 0x02	; 2
+  e2:	31 97       	sbiw	r30, 0x01	; 1
+  e4:	f1 f7       	brne	.-4      	; 0xe2 <reverse+0xc>
+  e6:	00 c0       	rjmp	.+0      	; 0xe8 <reverse+0x12>
+  e8:	00 00       	nop
+		_delay_ms(2.1);
+		PORTD &= ~(1 << PD0);
+  ea:	90 98       	cbi	0x12, 0	; 18
+  ec:	e5 ea       	ldi	r30, 0xA5	; 165
+  ee:	fe e0       	ldi	r31, 0x0E	; 14
+  f0:	31 97       	sbiw	r30, 0x01	; 1
+  f2:	f1 f7       	brne	.-4      	; 0xf0 <reverse+0x1a>
+  f4:	00 c0       	rjmp	.+0      	; 0xf6 <reverse+0x20>
+  f6:	00 00       	nop
+		_delay_ms(15);
+		
+		
+		//right servo
+		PORTD |= (1 << PD1);
+  f8:	91 9a       	sbi	0x12, 1	; 18
+  fa:	e0 ee       	ldi	r30, 0xE0	; 224
+  fc:	f0 e0       	ldi	r31, 0x00	; 0
+  fe:	31 97       	sbiw	r30, 0x01	; 1
+ 100:	f1 f7       	brne	.-4      	; 0xfe <reverse+0x28>
+ 102:	00 c0       	rjmp	.+0      	; 0x104 <reverse+0x2e>
+ 104:	00 00       	nop
+		_delay_ms(0.9);
+		PORTD &= ~(1 << PD1);
+ 106:	91 98       	cbi	0x12, 1	; 18
+ 108:	e5 ea       	ldi	r30, 0xA5	; 165
+ 10a:	fe e0       	ldi	r31, 0x0E	; 14
+ 10c:	31 97       	sbiw	r30, 0x01	; 1
+ 10e:	f1 f7       	brne	.-4      	; 0x10c <reverse+0x36>
+ 110:	00 c0       	rjmp	.+0      	; 0x112 <reverse+0x3c>
+ 112:	00 00       	nop
+		_delay_ms(15);
+		cycles-=1;
+ 114:	01 97       	sbiw	r24, 0x01	; 1
+	}
+}
+
+void reverse(int cycles)
+{
+	while(cycles > 0)
+ 116:	00 97       	sbiw	r24, 0x00	; 0
+ 118:	09 f7       	brne	.-62     	; 0xdc <reverse+0x6>
+ 11a:	08 95       	ret
+
+0000011c <turnLeft>:
+	}
+}
+
+void turnLeft(int cycles)
+{
+	for(int i = cycles; i > 0; i--)
+ 11c:	18 16       	cp	r1, r24
+ 11e:	19 06       	cpc	r1, r25
+ 120:	fc f4       	brge	.+62     	; 0x160 <turnLeft+0x44>
+	{
+		PORTD |= (1 << PD0);
+ 122:	90 9a       	sbi	0x12, 0	; 18
+ 124:	ec e0       	ldi	r30, 0x0C	; 12
+ 126:	f2 e0       	ldi	r31, 0x02	; 2
+ 128:	31 97       	sbiw	r30, 0x01	; 1
+ 12a:	f1 f7       	brne	.-4      	; 0x128 <turnLeft+0xc>
+ 12c:	00 c0       	rjmp	.+0      	; 0x12e <turnLeft+0x12>
+ 12e:	00 00       	nop
+		_delay_ms(2.1);
+		PORTD &= ~(1 << PD0);
+ 130:	90 98       	cbi	0x12, 0	; 18
+ 132:	e5 ea       	ldi	r30, 0xA5	; 165
+ 134:	fe e0       	ldi	r31, 0x0E	; 14
+ 136:	31 97       	sbiw	r30, 0x01	; 1
+ 138:	f1 f7       	brne	.-4      	; 0x136 <turnLeft+0x1a>
+ 13a:	00 c0       	rjmp	.+0      	; 0x13c <turnLeft+0x20>
+ 13c:	00 00       	nop
+		_delay_ms(15);
+				
+				
+		PORTD |= (1 << PD1);
+ 13e:	91 9a       	sbi	0x12, 1	; 18
+ 140:	ec e0       	ldi	r30, 0x0C	; 12
+ 142:	f2 e0       	ldi	r31, 0x02	; 2
+ 144:	31 97       	sbiw	r30, 0x01	; 1
+ 146:	f1 f7       	brne	.-4      	; 0x144 <turnLeft+0x28>
+ 148:	00 c0       	rjmp	.+0      	; 0x14a <turnLeft+0x2e>
+ 14a:	00 00       	nop
+		_delay_ms(2.1);
+		PORTD &= ~(1 << PD1);
+ 14c:	91 98       	cbi	0x12, 1	; 18
+ 14e:	e5 ea       	ldi	r30, 0xA5	; 165
+ 150:	fe e0       	ldi	r31, 0x0E	; 14
+ 152:	31 97       	sbiw	r30, 0x01	; 1
+ 154:	f1 f7       	brne	.-4      	; 0x152 <turnLeft+0x36>
+ 156:	00 c0       	rjmp	.+0      	; 0x158 <turnLeft+0x3c>
+ 158:	00 00       	nop
+	}
+}
+
+void turnLeft(int cycles)
+{
+	for(int i = cycles; i > 0; i--)
+ 15a:	01 97       	sbiw	r24, 0x01	; 1
+ 15c:	00 97       	sbiw	r24, 0x00	; 0
+ 15e:	09 f7       	brne	.-62     	; 0x122 <turnLeft+0x6>
+ 160:	08 95       	ret
+
+00000162 <turnRight>:
+	}
+}
+
+void turnRight(int cycles)
+{
+	for(int i = cycles; i > 0; i--)
+ 162:	18 16       	cp	r1, r24
+ 164:	19 06       	cpc	r1, r25
+ 166:	fc f4       	brge	.+62     	; 0x1a6 <turnRight+0x44>
+	{
+		PORTD |= (1 << PD0);
+ 168:	90 9a       	sbi	0x12, 0	; 18
+ 16a:	e0 ee       	ldi	r30, 0xE0	; 224
+ 16c:	f0 e0       	ldi	r31, 0x00	; 0
+ 16e:	31 97       	sbiw	r30, 0x01	; 1
+ 170:	f1 f7       	brne	.-4      	; 0x16e <turnRight+0xc>
+ 172:	00 c0       	rjmp	.+0      	; 0x174 <turnRight+0x12>
+ 174:	00 00       	nop
+		_delay_ms(0.9);
+		PORTD &= ~(1 << PD0);
+ 176:	90 98       	cbi	0x12, 0	; 18
+ 178:	e5 ea       	ldi	r30, 0xA5	; 165
+ 17a:	fe e0       	ldi	r31, 0x0E	; 14
+ 17c:	31 97       	sbiw	r30, 0x01	; 1
+ 17e:	f1 f7       	brne	.-4      	; 0x17c <turnRight+0x1a>
+ 180:	00 c0       	rjmp	.+0      	; 0x182 <turnRight+0x20>
+ 182:	00 00       	nop
+		_delay_ms(15);
+		
+		
+		PORTD |= (1 << PD1);
+ 184:	91 9a       	sbi	0x12, 1	; 18
+ 186:	e0 ee       	ldi	r30, 0xE0	; 224
+ 188:	f0 e0       	ldi	r31, 0x00	; 0
+ 18a:	31 97       	sbiw	r30, 0x01	; 1
+ 18c:	f1 f7       	brne	.-4      	; 0x18a <turnRight+0x28>
+ 18e:	00 c0       	rjmp	.+0      	; 0x190 <turnRight+0x2e>
+ 190:	00 00       	nop
+		_delay_ms(0.9);
+		PORTD &= ~(1 << PD1);
+ 192:	91 98       	cbi	0x12, 1	; 18
+ 194:	e5 ea       	ldi	r30, 0xA5	; 165
+ 196:	fe e0       	ldi	r31, 0x0E	; 14
+ 198:	31 97       	sbiw	r30, 0x01	; 1
+ 19a:	f1 f7       	brne	.-4      	; 0x198 <turnRight+0x36>
+ 19c:	00 c0       	rjmp	.+0      	; 0x19e <turnRight+0x3c>
+ 19e:	00 00       	nop
+	}
+}
+
+void turnRight(int cycles)
+{
+	for(int i = cycles; i > 0; i--)
+ 1a0:	01 97       	sbiw	r24, 0x01	; 1
+ 1a2:	00 97       	sbiw	r24, 0x00	; 0
+ 1a4:	09 f7       	brne	.-62     	; 0x168 <turnRight+0x6>
+ 1a6:	08 95       	ret
+
+000001a8 <avoidObstacle>:
+	
+	return (ADCL + (ADCH << 8)); //return 10 bit resolution
+}
+
+void avoidObstacle()
+{
+ 1a8:	cf 93       	push	r28
+ 1aa:	df 93       	push	r29
+	reverse(24);
+ 1ac:	88 e1       	ldi	r24, 0x18	; 24
+ 1ae:	90 e0       	ldi	r25, 0x00	; 0
+ 1b0:	92 df       	rcall	.-220    	; 0xd6 <reverse>
+	
+	int leftLDR = ADCConvert(5); // retrieve leftLDR data
+ 1b2:	85 e0       	ldi	r24, 0x05	; 5
+ 1b4:	90 e0       	ldi	r25, 0x00	; 0
+ 1b6:	5c df       	rcall	.-328    	; 0x70 <ADCConvert>
+ 1b8:	ec 01       	movw	r28, r24
+	int rightLDR = ADCConvert(4); // retrieve rightLDR data
+ 1ba:	84 e0       	ldi	r24, 0x04	; 4
+ 1bc:	90 e0       	ldi	r25, 0x00	; 0
+ 1be:	58 df       	rcall	.-336    	; 0x70 <ADCConvert>
+	
+	if(leftLDR > rightLDR)
+ 1c0:	8c 17       	cp	r24, r28
+ 1c2:	9d 07       	cpc	r25, r29
+ 1c4:	24 f4       	brge	.+8      	; 0x1ce <avoidObstacle+0x26>
+	{
+		turnLeft(DEG90_LEFT*2);
+ 1c6:	8c e1       	ldi	r24, 0x1C	; 28
+ 1c8:	90 e0       	ldi	r25, 0x00	; 0
+ 1ca:	a8 df       	rcall	.-176    	; 0x11c <turnLeft>
+ 1cc:	0a c0       	rjmp	.+20     	; 0x1e2 <avoidObstacle+0x3a>
+	}
+	else if(rightLDR > leftLDR)
+ 1ce:	c8 17       	cp	r28, r24
+ 1d0:	d9 07       	cpc	r29, r25
+ 1d2:	24 f4       	brge	.+8      	; 0x1dc <avoidObstacle+0x34>
+	{
+		turnRight(DEG90_RIGHT*2);
+ 1d4:	80 e2       	ldi	r24, 0x20	; 32
+ 1d6:	90 e0       	ldi	r25, 0x00	; 0
+ 1d8:	c4 df       	rcall	.-120    	; 0x162 <turnRight>
+ 1da:	03 c0       	rjmp	.+6      	; 0x1e2 <avoidObstacle+0x3a>
+	}
+	else
+	{
+		turnLeft(DEG90_LEFT*2);
+ 1dc:	8c e1       	ldi	r24, 0x1C	; 28
+ 1de:	90 e0       	ldi	r25, 0x00	; 0
+ 1e0:	9d df       	rcall	.-198    	; 0x11c <turnLeft>
+	}
+}
+ 1e2:	df 91       	pop	r29
+ 1e4:	cf 91       	pop	r28
+ 1e6:	08 95       	ret
+
+000001e8 <main>:
+
+int main (void)
+{
+	// Insert system clock initialization code here (sysclk_init()).
+
+	board_init();
+ 1e8:	3a df       	rcall	.-396    	; 0x5e <board_init>
+	
+	initialisePins();
+ 1ea:	3a df       	rcall	.-396    	; 0x60 <initialisePins>
+	//setupADC();
+	//calibrateLDRs();
+	
+	PORTD |= (1 << PD0) | (1 << PD1);
+ 1ec:	82 b3       	in	r24, 0x12	; 18
+ 1ee:	83 60       	ori	r24, 0x03	; 3
+ 1f0:	82 bb       	out	0x12, r24	; 18
+ 1f2:	86 e7       	ldi	r24, 0x76	; 118
+ 1f4:	91 e0       	ldi	r25, 0x01	; 1
+ 1f6:	01 97       	sbiw	r24, 0x01	; 1
+ 1f8:	f1 f7       	brne	.-4      	; 0x1f6 <main+0xe>
+ 1fa:	00 c0       	rjmp	.+0      	; 0x1fc <main+0x14>
+ 1fc:	00 00       	nop
+	_delay_ms(1.5);
+	PORTD &= ~(1 << PD0) & ~(1 << PD1);
+ 1fe:	82 b3       	in	r24, 0x12	; 18
+ 200:	8c 7f       	andi	r24, 0xFC	; 252
+ 202:	82 bb       	out	0x12, r24	; 18
+ 204:	8e e6       	ldi	r24, 0x6E	; 110
+ 206:	93 e1       	ldi	r25, 0x13	; 19
+ 208:	01 97       	sbiw	r24, 0x01	; 1
+ 20a:	f1 f7       	brne	.-4      	; 0x208 <main+0x20>
+ 20c:	00 c0       	rjmp	.+0      	; 0x20e <main+0x26>
+ 20e:	00 00       	nop
+
+	// Insert application code here, after the board has been initialized.
+
+	int leftLDR;
+	int rightLDR;
+	ADCConvert(5);
+ 210:	85 e0       	ldi	r24, 0x05	; 5
+ 212:	90 e0       	ldi	r25, 0x00	; 0
+ 214:	2d df       	rcall	.-422    	; 0x70 <ADCConvert>
+ 216:	89 e6       	ldi	r24, 0x69	; 105
+ 218:	98 e1       	ldi	r25, 0x18	; 24
+ 21a:	01 97       	sbiw	r24, 0x01	; 1
+ 21c:	f1 f7       	brne	.-4      	; 0x21a <main+0x32>
+ 21e:	00 c0       	rjmp	.+0      	; 0x220 <main+0x38>
+ 220:	00 00       	nop
+	while(true)
+	{
+		_delay_ms(25);
+		
+		leftLDR = ADCConvert(5); // retrieve leftLDR data
+ 222:	85 e0       	ldi	r24, 0x05	; 5
+ 224:	90 e0       	ldi	r25, 0x00	; 0
+ 226:	24 df       	rcall	.-440    	; 0x70 <ADCConvert>
+ 228:	ec 01       	movw	r28, r24
+		rightLDR = ADCConvert(4); // retrieve rightLDR data
+ 22a:	84 e0       	ldi	r24, 0x04	; 4
+ 22c:	90 e0       	ldi	r25, 0x00	; 0
+ 22e:	20 df       	rcall	.-448    	; 0x70 <ADCConvert>
+ 230:	8c 01       	movw	r16, r24
+		
+		if(ADCConvert(3) < AVOIDANCE_SENSITIVITY) // if the level of light on the front LDR is below the avoidance setting
+ 232:	83 e0       	ldi	r24, 0x03	; 3
+ 234:	90 e0       	ldi	r25, 0x00	; 0
+ 236:	1c df       	rcall	.-456    	; 0x70 <ADCConvert>
+ 238:	20 91 60 00 	lds	r18, 0x0060
+ 23c:	30 91 61 00 	lds	r19, 0x0061
+ 240:	82 17       	cp	r24, r18
+ 242:	93 07       	cpc	r25, r19
+ 244:	0c f4       	brge	.+2      	; 0x248 <main+0x60>
+		{
+			avoidObstacle(); // perform avoidance menuver
+ 246:	b0 df       	rcall	.-160    	; 0x1a8 <avoidObstacle>
+		}
+		
+		if(ADCConvert(4) < DARKNESSPAUSE && ADCConvert(5) < DARKNESSPAUSE)
+ 248:	84 e0       	ldi	r24, 0x04	; 4
+ 24a:	90 e0       	ldi	r25, 0x00	; 0
+ 24c:	11 df       	rcall	.-478    	; 0x70 <ADCConvert>
+ 24e:	40 97       	sbiw	r24, 0x10	; 16
+ 250:	2c f4       	brge	.+10     	; 0x25c <main+0x74>
+ 252:	85 e0       	ldi	r24, 0x05	; 5
+ 254:	90 e0       	ldi	r25, 0x00	; 0
+ 256:	0c df       	rcall	.-488    	; 0x70 <ADCConvert>
+ 258:	40 97       	sbiw	r24, 0x10	; 16
+ 25a:	ec f2       	brlt	.-70     	; 0x216 <main+0x2e>
+		{
+			//pause
+		}
+		else if(leftLDR > rightLDR)
+ 25c:	0c 17       	cp	r16, r28
+ 25e:	1d 07       	cpc	r17, r29
+ 260:	64 f4       	brge	.+24     	; 0x27a <main+0x92>
+		{
+			if((leftLDR - rightLDR) > LDRRESPONSE)
+ 262:	c0 1b       	sub	r28, r16
+ 264:	d1 0b       	sbc	r29, r17
+ 266:	27 97       	sbiw	r28, 0x07	; 7
+ 268:	24 f0       	brlt	.+8      	; 0x272 <main+0x8a>
+			{
+				turnLeft(DEG5_LEFT);
+ 26a:	81 e0       	ldi	r24, 0x01	; 1
+ 26c:	90 e0       	ldi	r25, 0x00	; 0
+ 26e:	56 df       	rcall	.-340    	; 0x11c <turnLeft>
+ 270:	d2 cf       	rjmp	.-92     	; 0x216 <main+0x2e>
+			}
+			else
+			{
+				moveForward(FORWARD1);
+ 272:	81 e0       	ldi	r24, 0x01	; 1
+ 274:	90 e0       	ldi	r25, 0x00	; 0
+ 276:	0c df       	rcall	.-488    	; 0x90 <moveForward>
+ 278:	ce cf       	rjmp	.-100    	; 0x216 <main+0x2e>
+			}
+		}
+		else if(rightLDR > leftLDR)
+ 27a:	c0 17       	cp	r28, r16
+ 27c:	d1 07       	cpc	r29, r17
+ 27e:	6c f4       	brge	.+26     	; 0x29a <main+0xb2>
+		{
+			if ((rightLDR - leftLDR) > LDRRESPONSE)
+ 280:	0c 1b       	sub	r16, r28
+ 282:	1d 0b       	sbc	r17, r29
+ 284:	07 30       	cpi	r16, 0x07	; 7
+ 286:	11 05       	cpc	r17, r1
+ 288:	24 f0       	brlt	.+8      	; 0x292 <main+0xaa>
+			{
+				turnRight(DEG5_RIGHT);
+ 28a:	81 e0       	ldi	r24, 0x01	; 1
+ 28c:	90 e0       	ldi	r25, 0x00	; 0
+ 28e:	69 df       	rcall	.-302    	; 0x162 <turnRight>
+ 290:	c2 cf       	rjmp	.-124    	; 0x216 <main+0x2e>
+			} 
+			else
+			{
+				moveForward(FORWARD1);
+ 292:	81 e0       	ldi	r24, 0x01	; 1
+ 294:	90 e0       	ldi	r25, 0x00	; 0
+ 296:	fc de       	rcall	.-520    	; 0x90 <moveForward>
+ 298:	be cf       	rjmp	.-132    	; 0x216 <main+0x2e>
+			}
+		}
+		else
+		{
+			moveForward(FORWARD1);
+ 29a:	81 e0       	ldi	r24, 0x01	; 1
+ 29c:	90 e0       	ldi	r25, 0x00	; 0
+ 29e:	f8 de       	rcall	.-528    	; 0x90 <moveForward>
+ 2a0:	ba cf       	rjmp	.-140    	; 0x216 <main+0x2e>
+
+000002a2 <_exit>:
+ 2a2:	f8 94       	cli
+
+000002a4 <__stop_program>:
+ 2a4:	ff cf       	rjmp	.-2      	; 0x2a4 <__stop_program>

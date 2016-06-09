@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "Helios", "Helios\Helios.cproj", "{EC0A1C4A-85D1-4177-99F7-3E1B5405BFB1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC0A1C4A-85D1-4177-99F7-3E1B5405BFB1}.Debug|AVR.ActiveCfg = Debug|AVR
+		{EC0A1C4A-85D1-4177-99F7-3E1B5405BFB1}.Debug|AVR.Build.0 = Debug|AVR
+		{EC0A1C4A-85D1-4177-99F7-3E1B5405BFB1}.Release|AVR.ActiveCfg = Release|AVR
+		{EC0A1C4A-85D1-4177-99F7-3E1B5405BFB1}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

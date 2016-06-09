@@ -1,0 +1,41 @@
+//void calibrateLDRs()
+//{
+	////ADMUX = 5; //set to retrieve input data from port PC5
+	//ADCSRA |= (1 << ADSC); //begin conversion
+	//while(ADCSRA & (1 << ADSC)); // waits for conversion to finish
+	//int leftLDR = ADCL + (ADCH << 8); // stores digital data
+			//
+	////ADCH = 0b00000000; // clears ADCH
+			//
+	////ADMUX = 4; //set to retrieve input data from port PC4
+	//ADCSRA |= (1 << ADSC); //begin conversion
+	//while(ADCSRA & (1 << ADSC)); // waits for conversion to finish
+	//int rightLDR = ADCL + (ADCH << 8); // stores digital data
+	//
+	////ADCH = 0b00000000; // clears ADCH
+	//
+	//if(leftLDR == rightLDR)
+	//{
+		//leftLdrOffset = 0;
+		//return;
+	//}
+	//else
+	//{
+		//if(leftLDR > rightLDR)
+		//{
+			//while (leftLDR > rightLDR)
+			//{
+				//leftLDR-=1;
+				//leftLdrOffset-=1;
+			//}
+		//}
+		//else
+		//{
+			//while (leftLDR < rightLDR)
+			//{
+				//leftLDR+=1;
+				//leftLdrOffset+=1;
+			//}
+		//}
+	//}
+//}
