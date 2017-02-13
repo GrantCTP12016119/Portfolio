@@ -1,0 +1,12 @@
+{
+  "description": "Blank Project",
+  "version": "2016.2.6165.19715",
+  "main": "Main.xaml",
+  "id": "Xiphos",
+  "dependencies": {},
+  "configurationOptions": {},
+  "excludedData": [
+    "Private:*",
+    "*password*"
+  ]
+}
